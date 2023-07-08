@@ -21,7 +21,7 @@ import br.com.corext.admcorext.model.Serventias;
 import br.com.corext.admcorext.repository.ServentiasRepository;
 
 @RestController
-@RequestMapping("/serventias")
+@RequestMapping("serventias")
 public class ServentiaController {
 
     @Autowired

@@ -395,4 +395,4 @@ let myGrid = new w2grid({
     onDblClick: infoServ,
 });
 
-myGrid.load('http://localhost:8080/serventias').then(res => res);
+myGrid.load('http://localhost:8081/serventias').then(res => res);

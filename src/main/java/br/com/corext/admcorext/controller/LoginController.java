@@ -9,7 +9,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public ModelAndView loginSgext() {
-        ModelAndView modelAndView = new ModelAndView("/login.html");
+        ModelAndView modelAndView = new ModelAndView("login.html");
 
         // RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         // HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();

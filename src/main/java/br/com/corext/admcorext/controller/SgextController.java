@@ -23,7 +23,7 @@ import br.com.corext.admcorext.repository.ServentiasRepository;
 // import java.util.regex.*;
 
 @Controller
-@RequestMapping("/sgext/")
+@RequestMapping("sgext")
 public class SgextController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class SgextController {
     @Autowired
     private FaqRepository faqRepository;
 
-    @GetMapping("/")
+    @GetMapping(value = {"", "/"})
     public ModelAndView home() {
 
         ModelAndView modelAndView = new ModelAndView("pages/sgext/indsgext.html");
@@ -109,7 +109,7 @@ public class SgextController {
         return modelAndView;
     }
 
-    @GetMapping("faq")
+    @GetMapping(value = {"faq", "/faq"})
     public ModelAndView faqServ(Model model) {
         ModelAndView modelAndView = new ModelAndView("pages/sgext/faq-sgext.html");
 
@@ -163,7 +163,7 @@ public class SgextController {
         return modelAndView;
     }
 
-    @PostMapping("faqForm")
+    @PostMapping("/faqForm")
     public String faqFormSave(@ModelAttribute Faq faq, Model model) {
         String action = "CADASTRADO";
 

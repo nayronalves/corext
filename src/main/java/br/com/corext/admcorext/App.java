@@ -1,7 +1,7 @@
 package br.com.corext.admcorext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,10 +15,10 @@ import br.com.corext.admcorext.controller.StorageService;
 @EnableConfigurationProperties(StorageProperties.class)
 public class App {
     public static void main(String[] args) {
-        final Logger LOG = LoggerFactory.getLogger(App.class);
+        // final Logger LOG = LoggerFactory.getLogger(App.class);
 
         SpringApplication.run(App.class, args);
-        LOG.info("APLICACAO INICIADA COM SUCESSO!");
+        // LOG.info("APLICACAO INICIADA COM SUCESSO!");
         // System.out.println( "Hello World!" );
     }
 

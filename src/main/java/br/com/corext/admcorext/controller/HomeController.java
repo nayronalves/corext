@@ -34,7 +34,7 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView home() {
         // ModelAndView modelAndView = new ModelAndView("index.html");
-        ModelAndView modelAndView = new ModelAndView("indexDefault.html");
+        ModelAndView modelAndView = new ModelAndView("index.html");
 
         List<Decisoes> decisoes = decisoesRepository.findAll();
         modelAndView.addObject("decisoes", decisoes);
