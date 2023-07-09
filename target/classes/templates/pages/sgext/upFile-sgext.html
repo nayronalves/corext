@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<div th:replace="~{pages/sgext/head-sgext :: headerSgext}"></div>
+
+<style>
+    .linkButtonBox {
+        color: initial;
+        text-decoration-style: none;
+    }
+
+    .info-box:active {
+        box-shadow: 0 0 0 0 #A9A9A9, inset 0.5px 0.5px 0.5px 0.5px #A9A9A9;
+        transform: translate(3px, 3px);
+    }
+</style>
+
+<body class="layout-top-nav layout-footer-fixed layout-navbar-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <div th:replace="~{pages/sgext/nav-sgext :: navSgext}"></div>
+        <!-- /.navbar -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0"> Gestão de<strong> Serventias Extrajudiciais</strong></h1>
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Apresentação | Olá, <strong>Seja Bem Vindo</strong></h3>
+
+                                    <!-- <div class="card-tools">
+                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="text" name="table_search" class="form-control float-right"
+                                                placeholder="Search">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                </div>
+                                <!-- /.card-header -->
+
+                                <div class="card-body">
+
+
+                                    <div class="row">
+
+                                        <div th:if="${message}">
+                                            <h2 th:text="${message}"></h2>
+                                        </div>
+
+                                        <div>
+                                            <form method="POST" enctype="multipart/form-data"
+                                                th:action="@{/sgext/upFile/}">
+
+                                                <!-- <div class="row"> -->
+                                                    <label class="control-label">Select File</label>
+                                                    <input id="input-b5" name="input-b5[]" th:name="file" type="file" multiple>
+                                                <!-- </div> -->
+                                                <!-- <table>
+                                                    <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+                                                    <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+                                                </table> -->
+
+                                            </form>
+                                        </div>
+                                        <div class="card my-4">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    <i class="fas fa-file-alt"></i>
+                                                    Files
+                                                </h3>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <p class="lead" th:each="file : ${files}" th:text="${file}"></p>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+        </div>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <!-- Fragment Footer: footer-sgext -->
+        <div th:replace="~{pages/sgext/footer-sgext :: footerSgext}"></div>
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Fragment Footer: footerScript-sgext -->
+    <div th:replace="~{pages/sgext/footScript-sgext :: footScriptSgext}"></div>
+
+
+
+</body>
+
+</html>

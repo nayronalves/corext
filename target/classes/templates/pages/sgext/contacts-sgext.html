@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<div th:replace="~{pages/sgext/head-sgext :: headerSgext}"></div>
+
+<body class="layout-top-nav layout-footer-fixed layout-navbar-fixed">
+  <!-- Site wrapper -->
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <div th:replace="~{pages/sgext/nav-sgext :: navSgext}"></div>
+    <!-- /.navbar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container">
+          <div class="row mb-2">
+            <div class="col-sm">
+              <h1>Contacts</h1>
+            </div>
+            <div class="col-sm">
+              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                <i class="fas fa-search"></i>
+              </a>
+              <div class="navbar-search-block">
+                <form class="form-inline">
+                  <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                      aria-label="Search">
+                    <div class="input-group-append">
+                      <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                      <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-sm">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Contacts</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container">
+
+          <!-- Default box -->
+          <div class="card card-solid">
+            <div class="card-body pb-0">
+              <div class="row">
+
+                <div th:each=" serv : ${serventias}"
+                  class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                  <div class="card bg-light d-flex flex-fill">
+                    <div class="card-header text-muted border-bottom-0" th:text="${serv.nome}">
+                    </div>
+                    <div class="card-body pt-0">
+                      <div class="row">
+                        <div class="col-7">
+                          <h2 class="lead"><b th:text="${serv.responsavel}"></b></h2>
+                          <p class="text-muted text-sm"><b>Perfil: </b> 
+                            Bacharel em Direito
+                          </p>
+                          <ul class="ml-4 mb-0 fa-ul text-muted">
+                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
+                              Endereço: <span th:text="${#strings.capitalizeWords(serv.logradouro)}"></span>
+                            </li>
+                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
+                              <span th:text="${serv.telefone}"></span>
+                            </li>
+                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
+                              <span th:text="${#strings.toUpperCase(serv.municipio)}"></span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-5 text-center">
+                          <!-- <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid"> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="text-right">
+                        <a href="#" class="btn btn-sm bg-teal">
+                          <i class="fas fa-comments"></i>
+                        </a>
+                        <a href="#" class="btn btn-sm btn-outline-secondary btn-flat">
+                          <i class="fas fa-user"></i> View Profile
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <nav aria-label="Contacts Page Navigation">
+              <ul class="pagination justify-content-center m-0">
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                <li class="page-item"><a class="page-link" href="#">8</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+
+    </div>
+
+    </section>
+    <!-- /.content -->
+    <!-- /.content-wrapper -->
+    <!-- Fragment Footer: footer-sgext -->
+    <div th:replace="~{pages/sgext/footer-sgext :: footerSgext}"></div>
+    <!-- ./wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+
+  <!-- Fragment Footer: footerScript-sgext -->
+  <div th:replace="~{pages/sgext/footScript-sgext :: footScriptSgext}"></div>
+</body>
+
+</html>

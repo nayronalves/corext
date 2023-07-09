@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:replace="~{pages/sgext/head-sgext :: headerSgext}"></div>
+
+<body class="layout-top-nav layout-footer-fixed layout-navbar-fixed">
+
+  <!-- Site wrapper -->
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <div th:replace="~{pages/sgext/nav-sgext :: navSgext}"></div>
+    <!-- /.navbar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>FAQ</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">FAQ</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <div class="container">
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-12" id="accordion">
+              <div class="card card-light">
+                <div class="card-header">
+                  <h3 class="card-title"><strong>Formulário Cadastro FAQ</strong></h3>
+                </div>
+
+                <div class="card-body">
+                  <div class="col-12 container">
+
+                    <form action="#" th:action="@{faqForm}" th:object="${faq}" method="post">
+                      <div class="row">
+                        <div class="col-sm">
+                          <div class="form-group">
+                            <label>Pergunta</label>
+                            <input type="text" class="form-control" placeholder="Digite o texto da pergunta FAQ"
+                              th:field="*{question}" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm">
+                          <div class="form-group">
+                            <label>Resposta</label>
+                            <textarea class="form-control" rows="4" placeholder="Digite o texto da resposta FAQ"
+                              style="height: 100px;" th:field="*{answer}" required></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm">
+                            <div class="row">
+                              <label>Prioridade FAQ</label>
+                            </div>
+
+                            <div class="row px-2" role="group" aria-label="Basic radio toggle button group">
+                              <div class="col px-0" th:each="imp : ${importances}">                                
+                                <input type="radio" class="btn-check" autocomplete="off" th:value="${imp}"
+                                  th:field="*{importance}">
+                                <label class="btn btn-block btn-flat" th:attrappend="class=${' btn-outline-' + imp}"
+                                  th:for="${#ids.prev('importance')}" th:text="${imp}"></label>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="row m-3 justify-content-md-center">
+                        <div class="d-grid gap-2 col-5 mx-auto">
+                          <button type="submit" class="btn btn-block bg-gradient-secondary btn-flat">Cadastrar</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+        </section>
+        <!-- /.content -->
+
+      </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Fragment Footer: footer-sgext -->
+    <div th:replace="~{pages/sgext/footer-sgext :: footerSgext}"></div>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- Fragment Footer: footerScript-sgext -->
+  <div th:replace="~{pages/sgext/footScript-sgext :: footScriptSgext}"></div>
+
+</body>
+
+</html>

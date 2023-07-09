@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<div th:replace="~{pages/sgext/head-sgext :: headerSgext}"></div>
+<style>
+    .linkButtonBox {
+        color: initial;
+        text-decoration-style: none;
+    }
+
+    .info-box:active {
+        box-shadow: 0 0 0 0 #A9A9A9, inset 0.5px 0.5px 0.5px 0.5px #A9A9A9;
+        transform: translate(3px, 3px);
+    }
+</style>
+
+<body class="layout-top-nav layout-footer-fixed layout-navbar-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <div th:replace="~{pages/sgext/nav-sgext :: navSgext}"></div>
+        <!-- /.navbar -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0"> Gestão de<strong> Serventias Extrajudiciais</strong></h1>
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Apresentação | Olá, <strong>Seja Bem Vindo</strong>!</span>
+                                    </h3>
+
+                                    <!-- <div class="card-tools">
+                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="text" name="table_search" class="form-control float-right"
+                                                placeholder="Search">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <!-- /.card-header -->
+
+                                <div class="card-body">
+                                    <p class="lead text-justify">
+                                        Esta plataforma foi desenvolvida pela <strong>Corregedoria do Foro
+                                            Extrajudicial
+                                            do Estado do Piauí</strong>
+                                        para facilitar a gestão de informações relacionadas às Serventias
+                                        Extrajudiciais
+                                        do Estado.
+
+                                        Através desta, podemos cadastrar e excluir uma serventia, modificar os
+                                        dados de cadastro de uma serventia existente, etc.
+                                    </p>
+
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <a href="#" class="linkButtonBox">
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-info elevation-1"><i
+                                                            class="fas fa-address-card"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">Perfil Interno</span>
+                                                        <span class="info-box-number">
+                                                            <span>0</span>
+                                                            <small>registros</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <a th:href="@{listserv-sgext}" class="linkButtonBox">
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-success elevation-1"><i
+                                                            class="far fa-envelope"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">Serventias Extrajudiciais</span>
+                                                        <span class="info-box-number">
+                                                            <span th:text="${serventiasAll.size()}"></span>
+                                                            <small>registros</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <a th:href="@{contacts-sgext}" class="linkButtonBox">
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-warning elevation-1"><i
+                                                            class="far fa-file"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">Responsáveis</span>
+                                                        <span class="info-box-number">
+                                                            <span th:text="${serventiasRespNoNull.size()}"></span>
+                                                            <small>registros</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <a th:href="@{faq}" class="linkButtonBox">
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-maroon elevation-1"><i
+                                                            class="fas fa-user-secret"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">FAQ</span>
+                                                        <span class="info-box-number">
+                                                            <span th:text="${faqs.size()}"></span>
+                                                            <small>registros</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+        </div>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <!-- Fragment Footer: footer-sgext -->
+        <div th:replace="~{pages/sgext/footer-sgext :: footerSgext}"></div>
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Fragment Footer: footerScript-sgext -->
+    <div th:replace="~{pages/sgext/footScript-sgext :: footScriptSgext}"></div>
+
+</body>
+
+</html>
