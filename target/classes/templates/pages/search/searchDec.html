@@ -90,16 +90,112 @@
   .bd-mode-toggle {
     z-index: 1500;
   }
+
+  .spin-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+  }
+
+  .spin {
+    position: absolute;
+    border: 3px solid #0D4B9F;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  #loader2 {
+    position: absolute;
+    border: 3px solid #E0EDFF;
+    width: 220px;
+    height: 220px;
+    /* position: relative; */
+    /* top: -216px; */
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  #loader3 {
+    position: absolute;
+    border: 3px solid #005CDC;
+    width: 240px;
+    height: 240px;
+    /* position: relative; */
+    /* top: -452px; */
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  #loader4 {
+    position: absolute;
+    border: 3px solid #94B6E5;
+    width: 260px;
+    height: 260px;
+    /* position: relative; */
+    /* top: -708px; */
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotateZ(-360deg)
+    }
+
+    100% {
+      transform: rotateZ(0deg)
+    }
+  }
+
+  @keyframes rotate2 {
+    0% {
+      transform: rotateZ(360deg)
+    }
+
+    100% {
+      transform: rotateZ(0deg)
+    }
+  }
+
+  #text {
+    color: #D6E3F6;
+    font-family: Arial;
+    font-size: 15px;
+    position: relative;
+    /* top: -857px; */
+  }
 </style>
 
 
 <body class="hold-transition layout-top-nav">
+
   <div class="wrapper">
 
     <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
+    <!-- <div class="preloader flex-column justify-content-center align-items-center">
       <img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60" width="60">
-    </div>
+    </div> -->
+
+    <!-- <div class="loader flex-column justify-content-center align-items-center"></div> -->
+    <!-- <div class="contLoader">
+      <div class="loader"></div>
+    </div> -->
+
+
+
 
     <!-- Navbar -->
     <!-- <div th:replace="~{navbar :: navbar}"></div> -->
@@ -114,18 +210,24 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <h2 class="text-center display-4">Consulta Decisões</h2>
+          <div class="py-3">
+            <h2 class="text-center display-4" style="font-family: 'Roboto', sans-serif;">Consulta Decisões</h2>
+          </div>
+
           <div class="row">
             <div class="col-md-8 offset-md-2">
-              <form action="/searchDecResults">
+              <form action="/searchDecResults" id="formSearch">
                 <div class="input-group">
-                  <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here"
+                  <input type="search" class="form-control form-control-lg"
+                    placeholder="Digite o texto para pesquisar" id="descDecisao"
                     name="descricaoDecisao">
                   <div class="input-group-append">
-                    <button type="submit" class="btn btn-lg btn-default">
+                    <button type="submit" class="btn btn-lg btn-default" id="submit">
                       <i class="fa fa-search"></i>
                     </button>
                   </div>
+                  <!-- <div class="contLoader">
+                  </div> -->
                 </div>
               </form>
             </div>
@@ -140,6 +242,15 @@
             <i class='fas fa-home'></i>
           </button>
         </a>
+      </div>
+
+
+      <div class="spin-container">
+        <div class="spin" id="loader"></div>
+        <div class="spin" id="loader2"></div>
+        <div class="spin" id="loader3"></div>
+        <div class="spin" id="loader4"></div>
+        <span id="text">LOADING...</span>
       </div>
 
     </div>
@@ -160,6 +271,24 @@
   </div>
   <!-- ./wrapper -->
 
+  <script>
+    const search = document.getElementById("formSearch");
+    const button = document.getElementById("submit");
+    const els = document.querySelector(".spin-container");
+
+    search.addEventListener("submit", function (event) {
+      console.log(document.getElementById("descDecisao").value);
+
+      els.style.display = 'flex';
+
+      setTimeout(() => {
+
+        els.style.display = 'none';
+        console.log("setTimeOut disparado");
+      }, 10000);
+
+    })
+  </script>
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
@@ -168,6 +297,9 @@
   <script src="../../dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <!-- <script src="../../dist/js/demo.js"></script> -->
+
+
+
 </body>
 
 </html>

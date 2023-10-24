@@ -19,7 +19,7 @@ public class App {
 
         SpringApplication.run(App.class, args);
         // LOG.info("APLICACAO INICIADA COM SUCESSO!");
-        // System.out.println( "Hello World!" );
+        System.out.println("##########   APLICACAO INICIADA COM SUCESSO!   ##########");
     }
 
     @Bean

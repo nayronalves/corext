@@ -55,8 +55,9 @@
                     <form action="" method="" id="formContactSgext">
                       <div class="form-group">
                         <label for="inputName">Nome</label>
-                        <input type="text" id="inputName" class="form-control" onchange="changeField(this.value)"
+                        <input type="text" id="inputName" name="name" class="form-control"
                            required>
+                           <!-- onchange="changeField(this.value)" -->
                       </div>
                       <div class="form-group">
                         <label for="inputEmail">E-mail</label>
@@ -71,7 +72,7 @@
                         <textarea id="inputMessage" class="form-control" rows="4" required></textarea>
                       </div>
                       <div class="form-group">
-                        <input type="submit" class="btn btn-sm bg-gradient-secondary btn-flat" value="Enviar">
+                        <input type="submit" onclick="submit()" class="btn btn-sm bg-gradient-secondary btn-flat" value="Enviar">
                       </div>
                     </form>
                   </div>
@@ -105,9 +106,16 @@
   <script>
     // const el = document.querySelector('#inputEmail');
     // console.log(el);
-    changeField = (event) => {
-      console.log(event);
-    }
+    // changeField = (event) => {
+    //   console.log(event);
+    // }
+    
+    const formData = new FormData(document.querySelector('form'));
+    const inputName = formData.get("name");
+    submit = () => {
+      console.log(formData);
+      // console.log();
+    } 
   </script>
 
 </body>

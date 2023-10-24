@@ -18,7 +18,7 @@ public class Faq {
     @Column
     private String question;
     
-    @Column
+    @Column(length = 900)
     private String answer;
 
     @Column

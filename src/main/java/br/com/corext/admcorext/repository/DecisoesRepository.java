@@ -9,7 +9,7 @@ import br.com.corext.admcorext.model.Decisoes;
 
 public interface DecisoesRepository extends JpaRepository<Decisoes, Long> {
 
-    @Query("SELECT d FROM Decisoes d WHERE d.decisao ilike %?1%")
+    @Query("select d from Decisoes d where d.decisao ilike %?1%")
     List<Decisoes> findDecisaoByDescricao(String decisao);
     
 }

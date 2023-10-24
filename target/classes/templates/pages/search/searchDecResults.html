@@ -17,6 +17,8 @@
   </symbol>
 </svg>
 
+<link rel="stylesheet" th:href="@{/dist/css/toastr.css}">
+
 <style>
   .bd-placeholder-img {
     font-size: 1.125rem;
@@ -90,16 +92,111 @@
   .bd-mode-toggle {
     z-index: 1500;
   }
+
+  .spin-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+  }
+
+  .spin {
+    position: absolute;
+    border: 3px solid #0D4B9F;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  #loader2 {
+    position: absolute;
+    border: 3px solid #E0EDFF;
+    width: 220px;
+    height: 220px;
+    /* position: relative; */
+    /* top: -216px; */
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  #loader3 {
+    position: absolute;
+    border: 3px solid #005CDC;
+    width: 240px;
+    height: 240px;
+    /* position: relative; */
+    /* top: -452px; */
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  #loader4 {
+    position: absolute;
+    border: 3px solid #94B6E5;
+    width: 260px;
+    height: 260px;
+    /* position: relative; */
+    /* top: -708px; */
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotateZ(-360deg)
+    }
+
+    100% {
+      transform: rotateZ(0deg)
+    }
+  }
+
+  @keyframes rotate2 {
+    0% {
+      transform: rotateZ(360deg)
+    }
+
+    100% {
+      transform: rotateZ(0deg)
+    }
+  }
+
+  #text {
+    color: #D6E3F6;
+    font-family: Arial;
+    font-size: 15px;
+    position: relative;
+    /* top: -857px; */
+  }
+
+  /* #copydec {
+    border: none;
+    background-color: #ced4dd;
+    color: #696f77;
+  } */
+
+
+  /* :root {
+    --accordion-padding-y:                     .5rem;
+    --accordion-padding-x:                     1.25rem;
+  } */
 </style>
 
-<body class="hold-transition layout-top-nav">
+
+<body class="hold-transition layout-top-nav layout-footer-fixed">
 
   <div class="wrapper">
-
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60" width="60">
-    </div>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -108,40 +205,39 @@
       <section class="content">
 
         <div class="container-fluid">
-          <h2 class="text-center display-4">Consulta Decisões</h2>
-
-          <div class="row">
-            <div class="col-md-8 offset-md-2">
-              <form action="/searchDecResults">
-                <div class="input-group">
-                  <input type="search" class="form-control form-control-lg" placeholder="Digite o texto para pesquisar"
-                    name="descricaoDecisao">
-                  <div class="input-group-append">
-                    <button type="submit" class="btn btn-lg btn-default">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
+          <div class="py-3">
+            <h2 class="text-center display-4" style="font-family: 'Roboto', sans-serif;">Consulta Decisões</h2>
           </div>
 
-          <div class="row mt-3">
-            <!-- <div class="col"> -->
-            <div class="col-md-8 offset-md-2">
-              <!-- <div class="list-group"> -->
-
-              <div class="alert alert-info alert-dismissible">
-                <button type="button" class="close btn btn-flat" data-dismiss="alert"
-                  aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-info"></i> <span
-                    th:text="${decisoes.size() + ' ' + 'decisões encontradas'}"></span></h5>
-                <!-- Info alert preview. This alert is dismissable. -->
+          <div class="row">
+          </div>
+          <div class="col-md-8 offset-md-2">
+            <form action="/searchDecResults" id="formSearch">
+              <div class="input-group">
+                <input type="search" class="form-control form-control-lg" placeholder="Digite o texto para pesquisar"
+                  id="descDecisao" name="descricaoDecisao">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-lg btn-default">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
               </div>
+            </form>
+          </div>
 
-              <!-- <div th:each="decisao : ${decisoes}" class="list-group-item"> -->
-              <!-- <div th:each="decisao : ${decisoes}"> -->
-              <!-- <div class="row"> -->
+          <div class="col-md-8 offset-md-2 mt-3">
+            <!-- <div class="row"> -->
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong th:text="${decisoes.size() + ' ' + 'decisões encontradas'}"></strong>
+              <button type="button" class="btn-close pt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <!-- </div> -->
+          </div>
+
+          <div class="row my-3">
+            <!-- <div class="col"> -->
+
+            <div class="col-md-8 offset-md-2" id="resultsSearch">
 
               <!-- View of the DECISION objects by SIMPLE_VIEW  -->
               <!-- <div class="col px-4">
@@ -171,22 +267,49 @@
                     </div>
                   </div> -->
 
+              <!-- View of the DECISION objects by ACCORDION  -->
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item" th:each="decisao, iterStat : ${decisoes}">
+                  <h1 class="accordion-header" style="font-family: 'Roboto', sans-serif;">
+                    <button class="accordion-button fs-6 py-2" style="background-color: #ced4dd; color: #696f77;"
+                      type="button" data-bs-toggle="collapse"
+                      th:attr="data-bs-target=${'#collapse' + iterStat.index}, aria-controls=${'collapse' + iterStat.index}"
+                      aria-expanded="false"
+                      th:text="${'Decisão n.º ' + decisao.num_documento + ' proferida em ' + decisao.data_assinatura +'  #  ' + decisao.protocolo}">
+                    </button>
+                  </h1>
+                  <div th:id="${'collapse' + iterStat.index}" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body lead fs-6 text-justify">
+                      <div
+                        th:text="${decisao.decisao}  + ' # ' + ${decisao.num_processo} + ' # ' + ${decisao.decisao.length()}">
+                      </div>
+                      <div class="text-right"><button id="copydec" type="button"
+                          onclick="copy(this.parentElement.previousElementSibling)"
+                          class="btn btn-outline-secondary btn-sm btn-flat" th:text="copiar"></button></div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
               <!-- View of the DECISION objects by EXPANDABLE TABLE  -->
-              <table class="table table-hover">
-                <!-- <thead style="">
+              <!-- <table class="table table-hover">
+                <thead>
                   <tr>
                     <th>id</th>
                     <th>Decisão</th>
                     <th class="text-center">Data</th>
                   </tr>
-                </thead> -->
+                </thead>
                 <tbody>
-                  <div th:each="decisao : ${decisoes}">
+                  <div th:each="decisao, iterStat : ${decisoes}">
                     <tr data-widget="expandable-table" aria-expanded="false">
-                      <td th:text="${'Decisão n.º ' + decisao.numero + ' proferida em ' + decisao.ano}"></td>
-                      <td th:text="${decisao.id}"></td>
-                      <!-- <td th:text="${'Decisão n.º ' + decisao.numero}"></td> -->
-                      <!-- <td th:text="${decisao.ano}" class="text-center"></td> -->
+                      <td style="background-color: rgb(97, 107, 116); color: white;"
+                        th:text="${iterStat.count + 'Decisão n.º ' + decisao.num_documento + ' proferida em ' + decisao.data_assinatura}">
+                      </td>
+                      <td th:text="${decisao.protocolo}" style="background-color: rgb(97, 107, 116); color: white;">
+                      </td>
                     </tr>
                     <tr class="expandable-body" style="background-color: white;">
                       <td colspan="5">
@@ -196,13 +319,17 @@
                   </div>
                 </tbody>
               </table>
-
             </div>
           </div>
-        </div>
-
+        </div> -->
 
       </section>
+
+      <!-- <div class="position-fixed top-0 start-0 m-2" id="alertCopy" style="display: none;">
+        <div class="alert alert-primary" role="alert">
+          Decisão copiada com Sucesso!
+        </div>
+      </div> -->
 
       <div class="dropdown position-fixed top-0 end-0 mt-3 pb-5 me-3 bd-mode-toggle">
         <a th:href="@{/}" style="text-decoration: none;">
@@ -212,6 +339,13 @@
         </a>
       </div>
 
+      <div class="spin-container">
+        <div class="spin" id="loader"></div>
+        <div class="spin" id="loader2"></div>
+        <div class="spin" id="loader3"></div>
+        <div class="spin" id="loader4"></div>
+        <span id="text">LOADING...</span>
+      </div>
 
     </div>
 
@@ -226,14 +360,49 @@
   </div>
   <!-- ./wrapper -->
 
+  <script>
+
+    function copy(v) {
+      let copyButton = document.getElementById('copydec');
+      navigator.clipboard.writeText(v.textContent);
+      console.log(v.textContent);
+      let alertCopy = document.getElementById("alertCopy");
+
+      if (v.textContent) {
+        toastr.info("Decisão copiada com sucesso!", null, {showDuration: 500, hideDuration: 500, progressBar: true, extendedTimeOut: 5000,});
+      }
+    }
+
+    const search = document.getElementById("formSearch");
+    const results = document.getElementById("resultsSearch");
+    const els = document.querySelector(".spin-container");
+
+    search.addEventListener("submit", function (event) {
+      // console.log(document.getElementById("descDecisao").value);
+      results.style.display = 'none';
+      els.style.display = 'flex';
+
+      setTimeout(() => {
+
+        els.style.display = 'none';
+        results.style.display = 'block';
+        console.log("setTimeOut disparado");
+      }, 10000);
+
+    })
+
+  </script>
+
+
   <!-- <div th:replace="~{ footer :: footer }"></div> -->
 
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap 5 -->
+  <script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
   <!-- AdminLTE App -->
   <script src="../../dist/js/adminlte.min.js"></script>
+  <script th:src="@{/dist/js/toastr.js}"></script>
   <!-- AdminLTE for demo purposes -->
   <!-- <script src="../../dist/js/demo.js"></script> -->
 </body>
